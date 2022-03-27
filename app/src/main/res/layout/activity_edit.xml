@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back"
+    tools:context=".EditActivity">
+
+    <EditText
+        android:id="@+id/editTextHeader"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="10sp"
+        android:hint="@string/header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="5sp"
+        android:layout_marginStart="5sp"
+        android:layout_marginEnd="5sp" />
+
+    <EditText
+        android:id="@+id/editTextDesc"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
+        android:background="@android:drawable/editbox_background"
+        android:ems="10"
+        android:inputType="textMultiLine|textPersonName"
+        android:padding="10sp"
+        android:hint="@string/description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextHeader"
+        android:layout_marginTop="5sp"
+        android:layout_marginStart="5sp"
+        android:layout_marginEnd="5sp"
+        android:layout_marginBottom="5sp"
+        android:gravity="top"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginBottom="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/fb_delete"
+        app:layout_constraintEnd_toEndOf="@+id/fb_delete"
+        app:srcCompat="@android:drawable/ic_menu_save"
+        android:alpha="0.8"
+        android:onClick="save"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginBottom="12sp"
+        android:layout_marginEnd="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        android:alpha="0.8"
+        android:onClick="delete"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
