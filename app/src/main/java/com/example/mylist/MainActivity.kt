@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mylist.db.ListColumn
 import com.example.mylist.db.MyAdapter
 import com.example.mylist.db.MyDatabase
 import com.example.mylist.db.MyDatabaseManager
@@ -17,18 +18,14 @@ class MainActivity : AppCompatActivity() {
 
     val databaseManager = MyDatabaseManager(this)
     val adapter = MyAdapter(ArrayList(), this)
-    var viewHolder: RecyclerView.ViewHolder? = null
+    var item = ListColumn()
 
     var recyclerView: RecyclerView? = null
-    var flag: CheckBox? = null
-    var textView: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         recyclerView = findViewById(R.id.recyclerView)
-        flag = findViewById(R.id.checkBox)
-        textView = findViewById(R.id.textView)
         init()
     }
 
@@ -52,9 +49,24 @@ class MainActivity : AppCompatActivity() {
     fun fillAdapter() {
         adapter.updateAdapter(databaseManager.readDatabase())
     }
-    fun flagCheckBox () {
-        flag?.setOnClickListener {  }
+
+    fun flagCheck (view: View) {
+        val flag: CheckBox = findViewById(R.id.checkBox)
+        val textL: TextView = findViewById(R.id.textL)
+
+        val myHeader = flag.text.toString()
+        val myDesc = textL.text.toString()
+
+        val id = item.id
+        val time = item.time
+
+        if (flag.isChecked) {
+            databaseManager.updateDatabase(myHeader, myDesc, id, time, "true")
+        } else {
+            databaseManager.updateDatabase(myHeader, myDesc, id, time, "false")
+        }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

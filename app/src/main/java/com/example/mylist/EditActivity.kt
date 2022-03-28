@@ -8,9 +8,7 @@ import android.view.View
 import android.widget.EditText
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mylist.db.MyAdapter
-import com.example.mylist.db.MyConstants
-import com.example.mylist.db.MyDatabaseManager
+import com.example.mylist.db.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -27,6 +25,7 @@ class EditActivity : AppCompatActivity() {
     var isEditState = false
 
     val adapter = MyAdapter(ArrayList(), this)
+    var item = ListColumn()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,9 +56,8 @@ class EditActivity : AppCompatActivity() {
         }
     }
     fun delete(view: View) {
-        val i = Intent(this, MainActivity::class.java)
-        startActivity(i)
         adapter.deleteItem(id, databaseManager)
+        finish()
     }
 
     fun getIntents() {
@@ -69,7 +67,7 @@ class EditActivity : AppCompatActivity() {
             editTextHeader?.setText(i.getStringExtra(MyConstants.HEADER_KEY))
             editTextDesc?.setText(i.getStringExtra(MyConstants.DESCRIPTION_KEY))
             id = i.getIntExtra(MyConstants.ID_KEY, 0)
-            //flag = i.getStringExtra(MyConstants.FLAG_KEY)!!
+            flag = i.getStringExtra(MyConstants.FLAG_KEY)!!
         }
     }
 

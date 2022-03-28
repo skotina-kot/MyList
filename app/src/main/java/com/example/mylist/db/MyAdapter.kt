@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mylist.EditActivity
 import com.example.mylist.R
@@ -20,10 +21,12 @@ class MyAdapter(list: ArrayList<ListColumn>, contextMA: Context) : RecyclerView.
 
     class MyHolder(markView: View, context: Context) : RecyclerView.ViewHolder(markView) {
         val flag: CheckBox = markView.findViewById(R.id.checkBox)
+        val textL: TextView = markView.findViewById(R.id.textL)
         val context = context
 
         fun dataList(item: ListColumn) {
             flag.text = item.header
+            textL.text = item.description
             flag.setOnLongClickListener {
                 val i = Intent(context, EditActivity::class.java).apply {
                     putExtra(MyConstants.ID_KEY, item.id)

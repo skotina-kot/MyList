@@ -53,7 +53,7 @@ class MyDatabaseManager(context: Context) {
             item.header = cursor.getString(cursor.getColumnIndex(MyDatabase.COLUMN_NAME_HEADER))
             item.description = cursor.getString(cursor.getColumnIndex(MyDatabase.COLUMN_NAME_DESCRIPTION))
             item.time = cursor.getString(cursor.getColumnIndex(MyDatabase.COLUMN_NAME_TIME))
-            //item.flag = cursor.getString(cursor.getColumnIndex(MyDatabase.COLUMN_NAME_FLAG))
+            item.flag = cursor.getString(cursor.getColumnIndex(MyDatabase.COLUMN_NAME_FLAG))
             listDatabase.add(item)
         }
         cursor.close()
