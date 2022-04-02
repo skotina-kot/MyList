@@ -1,5 +1,6 @@
 package com.example.mylist
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -18,13 +19,14 @@ class EditActivity : AppCompatActivity() {
     var editTextDesc: EditText? = null
     var recyclerView: RecyclerView? = null
     var flag = "false"
+    var pos = 0
 
 
     val databaseManager = MyDatabaseManager(this)
     var id = 0
     var isEditState = false
 
-    val adapter = MyAdapter(ArrayList(), this)
+    val adapter = MyAdapter(ArrayList(), this, MainActivity())
     var item = ListColumn()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,8 +58,18 @@ class EditActivity : AppCompatActivity() {
         }
     }
     fun delete(view: View) {
-        adapter.deleteItem(id, databaseManager)
-        finish()
+        val iid = id
+        val int = Intent(this, MainActivity::class.java)
+        startActivity(int)
+        adapter.deleteItem(iid, databaseManager)
+        //finish()
+
+        /*val int = Intent(this, MainActivity::class.java).apply {
+            putExtra(MyConstants.POS_KEY, pos)
+        }
+        this.startActivity(int)*/
+
+
     }
 
     fun getIntents() {
@@ -68,6 +80,7 @@ class EditActivity : AppCompatActivity() {
             editTextDesc?.setText(i.getStringExtra(MyConstants.DESCRIPTION_KEY))
             id = i.getIntExtra(MyConstants.ID_KEY, 0)
             flag = i.getStringExtra(MyConstants.FLAG_KEY)!!
+            pos = i.getIntExtra(MyConstants.POS_KEY, 0)
         }
     }
 

@@ -5,4 +5,5 @@ object MyConstants {
     const val HEADER_KEY = "header_key"
     const val DESCRIPTION_KEY = "description_key"
     const val FLAG_KEY = "flag_key"
+    const val POS_KEY = "pos_key"
 }

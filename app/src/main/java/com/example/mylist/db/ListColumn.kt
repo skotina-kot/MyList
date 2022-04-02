@@ -5,6 +5,6 @@ class ListColumn {
     var header = "empty"
     var description = "empty"
     var time = ""
-    var flag = "false"
+    var flag = ""
 
 }

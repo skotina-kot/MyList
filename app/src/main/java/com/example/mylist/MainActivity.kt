@@ -1,23 +1,21 @@
 package com.example.mylist
 
 import android.content.Intent
-import android.icu.text.Transliterator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mylist.db.ListColumn
 import com.example.mylist.db.MyAdapter
-import com.example.mylist.db.MyDatabase
+import com.example.mylist.db.MyConstants
 import com.example.mylist.db.MyDatabaseManager
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MyAdapter.Listener {
 
     val databaseManager = MyDatabaseManager(this)
-    val adapter = MyAdapter(ArrayList(), this)
+    val adapter = MyAdapter(ArrayList(), this, this)
     var item = ListColumn()
 
     var recyclerView: RecyclerView? = null
@@ -37,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         databaseManager.openDatabase()
+        //getDelete()
         fillAdapter()
 
     }
@@ -50,28 +49,21 @@ class MainActivity : AppCompatActivity() {
         adapter.updateAdapter(databaseManager.readDatabase())
     }
 
-    fun flagCheck (view: View) {
-        val flag: CheckBox = findViewById(R.id.checkBox)
-        val textL: TextView = findViewById(R.id.textL)
-
-        val myHeader = flag.text.toString()
-        val myDesc = textL.text.toString()
-
-        val id = item.id
-        val time = item.time
-
-        if (flag.isChecked) {
-            databaseManager.updateDatabase(myHeader, myDesc, id, time, "true")
-        } else {
-            databaseManager.updateDatabase(myHeader, myDesc, id, time, "false")
-        }
-    }
-
-
     override fun onDestroy() {
         super.onDestroy()
         databaseManager.closeDatabase()
     }
+
+    override fun onClick(item: ListColumn) {
+        databaseManager.changeFlag(item.id, item.flag)
+        fillAdapter()
+    }
+
+    /*fun getDelete() {
+        val int = intent
+        val pos = int.getIntExtra(MyConstants.POS_KEY, 0)
+        if (pos != 0 ) adapter.deleteItem(pos, databaseManager)
+    }*/
 
 
 }

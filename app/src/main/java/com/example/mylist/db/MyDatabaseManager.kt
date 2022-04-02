@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
+import com.example.mylist.MainActivity
 
 class MyDatabaseManager(context: Context) {
     val myDatabaseHelper = MyDatabaseHelper(context)
@@ -13,6 +14,22 @@ class MyDatabaseManager(context: Context) {
     fun openDatabase () {
         db = myDatabaseHelper.writableDatabase
     }
+
+
+    fun changeFlag(id: Int, flag: String){
+
+        val selection = BaseColumns._ID + "=$id"
+        var flagNew = ""
+        if (flag == "true") flagNew = "false"
+        else flagNew = "true"
+
+        val values = ContentValues().apply {
+            put(MyDatabase.COLUMN_NAME_FLAG, flagNew)
+        }
+        //считываешь значение флага, если он тру -> фолс, если фолс -> тру, запускакаешь функцию отображения заново
+        db?.update(MyDatabase.LIST_NAME, values, selection, null)
+    }
+
 
     fun insertToDatabase (header: String, description: String, time: String, flag: String) {
         val values = ContentValues().apply {
