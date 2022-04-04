@@ -46,25 +46,16 @@
         android:id="@+id/fb_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_marginBottom="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/fb_delete"
-        app:layout_constraintEnd_toEndOf="@+id/fb_delete"
-        app:srcCompat="@android:drawable/ic_menu_save"
-        android:alpha="0.8"
-        android:onClick="save"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fb_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_marginBottom="12sp"
         android:layout_marginEnd="12sp"
+        android:layout_marginBottom="12sp"
+        android:alpha="0.8"
+        android:clickable="true"
+        android:onClick="save"
+        app:backgroundTint="?android:attr/fastScrollTextColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_delete"
-        android:alpha="0.8"
-        android:onClick="delete"/>
+        app:rippleColor="@color/white"
+        app:srcCompat="@android:drawable/ic_menu_save" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

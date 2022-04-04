@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="back">#699894</color>
     <color name="dark_back">#003549</color>
+    <color name="hex">#00FFFFFF</color>
+    <color name="back2">#8DC7C2</color>
+    <color name="bar">#587A77</color>
 </resources>

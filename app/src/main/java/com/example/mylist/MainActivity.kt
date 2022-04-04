@@ -3,8 +3,10 @@ package com.example.mylist
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.CheckBox
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mylist.db.ListColumn
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity(), MyAdapter.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportActionBar?.setHomeButtonEnabled(true)
         recyclerView = findViewById(R.id.recyclerView)
         init()
     }
@@ -35,13 +38,14 @@ class MainActivity : AppCompatActivity(), MyAdapter.Listener {
     override fun onResume() {
         super.onResume()
         databaseManager.openDatabase()
-        //getDelete()
         fillAdapter()
 
     }
 
     fun init() {
         recyclerView?.layoutManager = LinearLayoutManager(this)
+        val swapHelper = getSwapMg()
+        swapHelper.attachToRecyclerView(recyclerView)
         recyclerView?.adapter = adapter
     }
 
@@ -59,11 +63,22 @@ class MainActivity : AppCompatActivity(), MyAdapter.Listener {
         fillAdapter()
     }
 
-    /*fun getDelete() {
-        val int = intent
-        val pos = int.getIntExtra(MyConstants.POS_KEY, 0)
-        if (pos != 0 ) adapter.deleteItem(pos, databaseManager)
-    }*/
+    private fun getSwapMg() : ItemTouchHelper {
+        return ItemTouchHelper(object:
+            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                adapter.deleteItem(viewHolder.adapterPosition, databaseManager)
+            }
+        })
+    }
 
 
 }

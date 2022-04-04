@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="5sp"
     android:layout_marginStart="5sp"
-    android:layout_marginTop="5sp">
+    android:layout_marginTop="5sp"
+    android:layout_marginEnd="5sp"
+    android:scrollbarThumbHorizontal="@color/hex"
+    android:scrollbarThumbVertical="@color/hex"
+    android:scrollbarTrackHorizontal="@color/hex"
+    android:scrollbarTrackVertical="@color/hex"
+    android:textAlignment="center">
 
 
     <CheckBox
@@ -24,21 +29,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fb_delete_item"
-        android:layout_width="30sp"
-        android:layout_height="30sp"
-        android:layout_marginTop="10sp"
-        android:layout_marginEnd="10sp"
-        android:layout_marginBottom="10sp"
-        android:clickable="true"
-        app:fabSize="mini"
-        app:fabCustomSize="31sp"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox"
-        app:layout_constraintEnd_toEndOf="@+id/checkBox"
-        app:layout_constraintTop_toTopOf="@+id/checkBox"
-        app:maxImageSize="20sp"
-        app:srcCompat="@android:drawable/ic_delete"
-        app:useCompatPadding="false" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

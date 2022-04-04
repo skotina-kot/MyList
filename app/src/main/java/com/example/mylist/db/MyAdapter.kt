@@ -7,10 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mylist.EditActivity
-import com.example.mylist.MainActivity
 import com.example.mylist.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -23,9 +21,7 @@ class MyAdapter(list: ArrayList<ListColumn>, contextMA: Context, val listener: L
 
     class MyHolder(markView: View, context: Context) : RecyclerView.ViewHolder(markView) {
         val flag: CheckBox = markView.findViewById(R.id.checkBox)
-        val del: FloatingActionButton = markView.findViewById(R.id.fb_delete_item)
         val context = context
-        //val markView = RecyclerView.ViewHolder
 
         fun dataList(item: ListColumn) {
             flag.text = item.header
@@ -36,14 +32,9 @@ class MyAdapter(list: ArrayList<ListColumn>, contextMA: Context, val listener: L
                     putExtra(MyConstants.HEADER_KEY, item.header)
                     putExtra(MyConstants.DESCRIPTION_KEY, item.description)
                     putExtra(MyConstants.FLAG_KEY, item.flag)
-                    putExtra(MyConstants.POS_KEY, adapterPosition)
                 }
                 context.startActivity(i)
                 return@setOnLongClickListener true
-            }
-
-            del.setOnClickListener {
-
             }
 
         }
@@ -56,8 +47,6 @@ class MyAdapter(list: ArrayList<ListColumn>, contextMA: Context, val listener: L
                 listener.onClick(item)
             }
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
@@ -81,12 +70,12 @@ class MyAdapter(list: ArrayList<ListColumn>, contextMA: Context, val listener: L
         notifyDataSetChanged()
     }
 
-    fun deleteItem(id: Int, DatabaseManager: MyDatabaseManager) {
+    fun deleteItem(pos: Int, DatabaseManager: MyDatabaseManager) {
 
-        DatabaseManager.deleteToDatabase(id.toString())
-        listArray.removeAt(id)
+        DatabaseManager.deleteToDatabase(listArray[pos].id.toString())
+        listArray.removeAt(pos)
         notifyItemRangeChanged(0, listArray.size)
-        notifyItemRemoved(id)
+        notifyItemRemoved(pos)
     }
 
     interface Listener {

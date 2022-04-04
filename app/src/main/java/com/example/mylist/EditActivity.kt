@@ -21,13 +21,10 @@ class EditActivity : AppCompatActivity() {
     var flag = "false"
     var pos = 0
 
-
     val databaseManager = MyDatabaseManager(this)
     var id = 0
     var isEditState = false
 
-    val adapter = MyAdapter(ArrayList(), this, MainActivity())
-    var item = ListColumn()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,20 +54,7 @@ class EditActivity : AppCompatActivity() {
             finish()
         }
     }
-    fun delete(view: View) {
-        val iid = id
-        val int = Intent(this, MainActivity::class.java)
-        startActivity(int)
-        adapter.deleteItem(iid, databaseManager)
-        //finish()
 
-        /*val int = Intent(this, MainActivity::class.java).apply {
-            putExtra(MyConstants.POS_KEY, pos)
-        }
-        this.startActivity(int)*/
-
-
-    }
 
     fun getIntents() {
         val i = intent
@@ -80,7 +64,6 @@ class EditActivity : AppCompatActivity() {
             editTextDesc?.setText(i.getStringExtra(MyConstants.DESCRIPTION_KEY))
             id = i.getIntExtra(MyConstants.ID_KEY, 0)
             flag = i.getStringExtra(MyConstants.FLAG_KEY)!!
-            pos = i.getIntExtra(MyConstants.POS_KEY, 0)
         }
     }
 
