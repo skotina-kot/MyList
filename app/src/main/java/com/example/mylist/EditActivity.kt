@@ -17,9 +17,7 @@ class EditActivity : AppCompatActivity() {
 
     var editTextHeader: EditText? = null
     var editTextDesc: EditText? = null
-    var recyclerView: RecyclerView? = null
     var flag = "false"
-    var pos = 0
 
     val databaseManager = MyDatabaseManager(this)
     var id = 0
@@ -31,7 +29,6 @@ class EditActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit)
         editTextHeader = findViewById(R.id.editTextHeader)
         editTextDesc = findViewById(R.id.editTextDesc)
-        recyclerView = findViewById(R.id.recyclerView)
         getIntents()
     }
 

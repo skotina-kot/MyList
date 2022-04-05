@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mylist.EditActivity
+import com.example.mylist.MainActivity
 import com.example.mylist.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -64,11 +66,20 @@ class MyAdapter(list: ArrayList<ListColumn>, contextMA: Context, val listener: L
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateAdapter(listData: List<ListColumn>) {
+    fun updateAdapter(listData: List<ListColumn>, textViewDate: String) {
         listArray.clear()
         listArray.addAll(listData)
+        /*var pos=0
+        do {
+            if (listData[pos].time == textViewDate) {
+                listArray.add(listData[pos])
+            }
+            pos++
+        } while (pos < listData.size)*/
         notifyDataSetChanged()
     }
+
+
 
     fun deleteItem(pos: Int, DatabaseManager: MyDatabaseManager) {
 
