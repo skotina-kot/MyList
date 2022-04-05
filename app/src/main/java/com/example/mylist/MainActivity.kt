@@ -1,6 +1,7 @@
 package com.example.mylist
 
 import android.annotation.SuppressLint
+import android.app.ActionBar
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Build
@@ -30,16 +31,21 @@ class MainActivity : AppCompatActivity(), MyAdapter.Listener {
     val adapter = MyAdapter(ArrayList(), this, this)
     var item = ListColumn()
     val cal = Calendar.getInstance()
+    @SuppressLint("SimpleDateFormat")
+    val formatter = SimpleDateFormat("dd.MM.yyyy")
 
     var recyclerView: RecyclerView? = null
     var  textViewDate: TextView? = null
 
+
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //supportActionBar?.setHomeButtonEnabled(true)
         recyclerView = findViewById(R.id.recyclerView)
         textViewDate = findViewById(R.id.textViewDate)
+
         init()
     }
 
@@ -50,33 +56,30 @@ class MainActivity : AppCompatActivity(), MyAdapter.Listener {
 
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        //val id =  R.id.calendar_action_bar
-        datePickDia()
+    override fun onOptionsItemSelected(itemM: MenuItem): Boolean {
 
-        return super.onOptionsItemSelected(item)
+        val data = datePickDiaLis(itemM)
+        DatePickerDialog(this, data,
+            cal.get(Calendar.YEAR),
+            cal.get(Calendar.MONTH),
+            cal.get(Calendar.DAY_OF_MONTH)).show()
+
+        return super.onOptionsItemSelected(itemM)
     }
 
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
-    fun datePickDia() {
+    fun datePickDiaLis(itemM: MenuItem): DatePickerDialog.OnDateSetListener {
         val data = DatePickerDialog.OnDateSetListener { view, year, month, day ->
             cal.set(Calendar.YEAR, year)
             cal.set(Calendar.MONTH, month)
             cal.set(Calendar.DAY_OF_MONTH, day)
 
-            val formatter = SimpleDateFormat("dd.MM.yyyy")
-            //item.title = formatter.format(cal.time).toString()
-            textViewDate?.text = formatter.format(cal.time).toString()
+            fillAdapter()
 
         }
-
-        DatePickerDialog(this, data,
-            cal.get(Calendar.YEAR),
-            cal.get(Calendar.MONTH),
-            cal.get(Calendar.DAY_OF_MONTH)).show()
+        return data
     }
-
 
     fun newPage(view: View) {
         val i = Intent(this, EditActivity::class.java)
@@ -100,7 +103,7 @@ class MainActivity : AppCompatActivity(), MyAdapter.Listener {
     }
 
     fun fillAdapter() {
-        adapter.updateAdapter(databaseManager.readDatabase(), textViewDate?.text.toString())
+        adapter.updateAdapter(databaseManager.readDatabase(), formatter.format(cal.time).toString())
     }
 
     override fun onDestroy() {

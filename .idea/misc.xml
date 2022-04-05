@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/YaAndroidRazrabotchik/MyList/app/src/main/res/drawable-anydpi/ic_action_add.xml" value="0.196" />
         <entry key="..\:/YaAndroidRazrabotchik/MyList/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.343" />
+        <entry key="..\:/YaAndroidRazrabotchik/MyList/app/src/main/res/drawable-anydpi/ic_action_scr.xml" value="0.343" />
         <entry key="..\:/YaAndroidRazrabotchik/MyList/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.343" />
         <entry key="..\:/YaAndroidRazrabotchik/MyList/app/src/main/res/drawable/ic_launcher_background.xml" value="0.343" />
-        <entry key="..\:/YaAndroidRazrabotchik/MyList/app/src/main/res/layout/activity_edit.xml" value="0.33" />
-        <entry key="..\:/YaAndroidRazrabotchik/MyList/app/src/main/res/layout/activity_main.xml" value="0.24728260869565216" />
+        <entry key="..\:/YaAndroidRazrabotchik/MyList/app/src/main/res/layout/activity_edit.xml" value="0.5" />
+        <entry key="..\:/YaAndroidRazrabotchik/MyList/app/src/main/res/layout/activity_main.xml" value="0.45580808080808083" />
         <entry key="..\:/YaAndroidRazrabotchik/MyList/app/src/main/res/layout/activity_start.xml" value="0.33" />
         <entry key="..\:/YaAndroidRazrabotchik/MyList/app/src/main/res/layout/markup.xml" value="0.5" />
         <entry key="..\:/YaAndroidRazrabotchik/MyList/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />

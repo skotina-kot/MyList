@@ -68,14 +68,11 @@ class MyAdapter(list: ArrayList<ListColumn>, contextMA: Context, val listener: L
     @SuppressLint("NotifyDataSetChanged")
     fun updateAdapter(listData: List<ListColumn>, textViewDate: String) {
         listArray.clear()
-        listArray.addAll(listData)
-        /*var pos=0
-        do {
-            if (listData[pos].time == textViewDate) {
-                listArray.add(listData[pos])
-            }
-            pos++
-        } while (pos < listData.size)*/
+
+        for (arg in listData) {
+            if (arg.time == textViewDate) listArray.add(arg)
+        }
+
         notifyDataSetChanged()
     }
 

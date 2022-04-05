@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/back"
+    android:background="@color/back2"
     tools:context=".EditActivity">
 
     <EditText
@@ -51,11 +51,10 @@
         android:alpha="0.8"
         android:clickable="true"
         android:onClick="save"
-        app:backgroundTint="?android:attr/fastScrollTextColor"
+        app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/white"
-        app:srcCompat="@android:drawable/ic_menu_save" />
+        app:srcCompat="@drawable/ic_action_save" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

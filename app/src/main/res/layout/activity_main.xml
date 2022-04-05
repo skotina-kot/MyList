@@ -25,10 +25,10 @@
         android:alpha="0.8"
         android:clickable="true"
         android:onClick="newPage"
-        app:backgroundTint="?android:attr/fastScrollTextColor"
+        app:backgroundTint="?attr/colorOnPrimarySurface"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:srcCompat="@drawable/ic_action_add" />
 
     <TextView
         android:id="@+id/textViewDate"
