@@ -43,13 +43,13 @@ class MyDatabaseManager(context: Context) {
     }
 
 
-    fun updateDatabase (header: String, description: String, id: Int, time: String, flag: String) {
+    fun updateDatabase (header: String, description: String, id: Int, /*time: String, flag: String*/) {
         val selection = BaseColumns._ID + "=$id"
         val values = ContentValues().apply {
             put(MyDatabase.COLUMN_NAME_HEADER, header)
             put(MyDatabase.COLUMN_NAME_DESCRIPTION, description)
-            put(MyDatabase.COLUMN_NAME_TIME, time)
-            put(MyDatabase.COLUMN_NAME_FLAG, flag)
+            //put(MyDatabase.COLUMN_NAME_TIME, time)
+            //put(MyDatabase.COLUMN_NAME_FLAG, flag)
         }
         db?.update(MyDatabase.LIST_NAME, values, selection, null)
     }

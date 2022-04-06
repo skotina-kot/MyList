@@ -1,7 +1,6 @@
 package com.example.mylist
 
 import android.annotation.SuppressLint
-import android.app.ActionBar
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Build
@@ -10,9 +9,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.CheckBox
-import android.widget.DatePicker
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,36 +25,30 @@ class MainActivity : AppCompatActivity(), MyAdapter.Listener {
 
     val databaseManager = MyDatabaseManager(this)
     val adapter = MyAdapter(ArrayList(), this, this)
-    var item = ListColumn()
     val cal = Calendar.getInstance()
     @SuppressLint("SimpleDateFormat")
     val formatter = SimpleDateFormat("dd.MM.yyyy")
-
     var recyclerView: RecyclerView? = null
-    var  textViewDate: TextView? = null
 
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //supportActionBar?.setHomeButtonEnabled(true)
         recyclerView = findViewById(R.id.recyclerView)
-        textViewDate = findViewById(R.id.textViewDate)
-
         init()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
-        return true//super.onCreateOptionsMenu(menu)
+        return true
     }
 
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onOptionsItemSelected(itemM: MenuItem): Boolean {
 
-        val data = datePickDiaLis(itemM)
+        val data = datePickDiaLis()
         DatePickerDialog(this, data,
             cal.get(Calendar.YEAR),
             cal.get(Calendar.MONTH),
@@ -69,20 +59,22 @@ class MainActivity : AppCompatActivity(), MyAdapter.Listener {
 
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
-    fun datePickDiaLis(itemM: MenuItem): DatePickerDialog.OnDateSetListener {
+    fun datePickDiaLis(): DatePickerDialog.OnDateSetListener {
         val data = DatePickerDialog.OnDateSetListener { view, year, month, day ->
             cal.set(Calendar.YEAR, year)
             cal.set(Calendar.MONTH, month)
             cal.set(Calendar.DAY_OF_MONTH, day)
 
             fillAdapter()
-
         }
         return data
     }
 
     fun newPage(view: View) {
-        val i = Intent(this, EditActivity::class.java)
+
+        val i = Intent(this, EditActivity::class.java).apply {
+            putExtra(MyConstants.TIME_KEY, formatter.format(cal.timeInMillis).toString())
+        }
         startActivity(i)
     }
 
@@ -92,7 +84,6 @@ class MainActivity : AppCompatActivity(), MyAdapter.Listener {
         super.onResume()
         databaseManager.openDatabase()
         fillAdapter()
-
     }
 
     fun init() {
@@ -132,7 +123,6 @@ class MainActivity : AppCompatActivity(), MyAdapter.Listener {
             }
         })
     }
-
 
 
 }

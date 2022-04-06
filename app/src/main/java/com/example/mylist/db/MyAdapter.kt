@@ -76,8 +76,6 @@ class MyAdapter(list: ArrayList<ListColumn>, contextMA: Context, val listener: L
         notifyDataSetChanged()
     }
 
-
-
     fun deleteItem(pos: Int, DatabaseManager: MyDatabaseManager) {
 
         DatabaseManager.deleteToDatabase(listArray[pos].id.toString())
