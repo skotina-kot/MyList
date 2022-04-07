@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.mylist.db.*
 
@@ -38,6 +39,13 @@ class EditActivity : AppCompatActivity() {
         val myHeader = editTextHeader?.text.toString()
         val myDesc = editTextDesc?.text.toString()
 
+        if (myHeader == "") {
+            Toast.makeText(applicationContext, "Enter header...", Toast.LENGTH_LONG).show()
+        }
+        if (myDesc == "") {
+            Toast.makeText(applicationContext, "Enter description...", Toast.LENGTH_LONG).show()
+        }
+
         if (myHeader != "" && myDesc != "") {
             if (isEditState) {
                 databaseManager.updateDatabase(myHeader, myDesc, id)
@@ -56,7 +64,6 @@ class EditActivity : AppCompatActivity() {
             editTextHeader?.setText(i.getStringExtra(MyConstants.HEADER_KEY))
             editTextDesc?.setText(i.getStringExtra(MyConstants.DESCRIPTION_KEY))
             id = i.getIntExtra(MyConstants.ID_KEY, 0)
-            //flag = i.getStringExtra(MyConstants.FLAG_KEY)!!
         }
     }
 
